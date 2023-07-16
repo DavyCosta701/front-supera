@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Histórico de Transações Bancárias</title>
+  <link rel="stylesheet" type="text/css" href="styles.css">
+
+</head>
+<body>
+  <h1>Histórico de Transações Bancárias</h1>
+  
+  <form method="post" action="">
+    <label for="data_inicio">Data de Início:</label>
+    <input type="date" id="data_inicio" name="data_inicio">
+    
+    <label for="data_fim">Data Final:</label>
+    <input type="date" id="data_fim" name="data_fim">
+    
+    <label for="operador">Operador:</label>
+    <input type="text" id="operador" name="operador">
+    
+    <button type="submit">Pesquisar</button>
+  </form>
+  
+  <table>
+    <tr>
+      <th>Data</th>
+      <th>Operador</th>
+      <th>Descrição</th>
+      <th>Valor</th>
+    </tr>
+    <!-- Aqui você pode adicionar as transações dinamicamente com base nos filtros -->
+    <tr>
+      <td>01/07/2023</td>
+      <td>João</td>
+      <td>Depósito</td>
+      <td>R$ 500,00</td>
+    </tr>
+    <tr>
+      <td>02/07/2023</td>
+      <td>Maria</td>
+      <td>Saque</td>
+      <td>R$ 200,00</td>
+    </tr>
+  </table>
+</body>
+</html>
