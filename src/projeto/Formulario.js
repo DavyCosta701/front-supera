@@ -37,7 +37,7 @@ const TransactionTable = () => {
 
   return (
     <div>
-       {errorMessage ? errorMessage.map((error) => (<p style={{ color: 'red' }}>{error}</p>)) : null}
+             {errorMessage ? errorMessage.map((error) => (<p style={{ color: 'red' }}>{error}</p>)) : null}
       <form onSubmit={handlePost}>
         <div className="search-group">
           <div className="input-group">
@@ -45,7 +45,7 @@ const TransactionTable = () => {
             <input type="text" id="data_inicio" name="data_inicio" />
           </div>
           <div className="input-group">
-            <label htmlFor="data_fim">Data Final:</label>
+            <label htmlFor="data_fim">Data Final: </label>
             <input type="text" id="data_fim" name="data_fim" />
           </div>
           <div className="input-group">
