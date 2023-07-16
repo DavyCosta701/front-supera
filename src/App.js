@@ -1,5 +1,5 @@
 import './App.css';
-import Formulario from './projeto/Formulario'; 
+import TransactionTable from './projeto/Formulario'; 
 
 
 
@@ -8,7 +8,7 @@ function App() {
 
   return (
     <><><h1>Histórico de Transações Bancárias</h1>
-      <Formulario /></></>
+      <TransactionTable /></></>
 
   )
 }
