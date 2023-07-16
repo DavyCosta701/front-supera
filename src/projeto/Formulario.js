@@ -5,6 +5,7 @@ const TransactionTable = () => {
   const [data, setData] = useState([]);
   const [saldoTotal, setSaldoTotal] = useState(0);
   const [saldoPeriodo, setSaldoPeriodo] = useState(0);
+  const [errorMessage, setErrorMessage] = useState([]);
 
 
   const handlePost = async (event) => {
@@ -16,17 +17,16 @@ const TransactionTable = () => {
     }
     const queryString = searchParams.toString();
 
-    try {
-      const response = await fetch(`http://localhost:8080/?${queryString}`);
-      if (response.status !== 200) {
-        throw new Error('Bad Server Response');
-      }
-      const responseData = await response.json();
+    const response = await fetch(`http://localhost:8080/?${queryString}`);
+    const responseData = await response.json();
+
+    if (response.status !== 200) {
+      setErrorMessage(responseData.errors);
+    } else {
+      setErrorMessage([]);
       setData(responseData.transactions);
       setSaldoTotal(responseData.saldoTotal);
       setSaldoPeriodo(responseData.saldoPeriodo);
-    } catch (error) {
-      console.error(error);
     }
   };
 
@@ -37,6 +37,7 @@ const TransactionTable = () => {
 
   return (
     <div>
+       {errorMessage ? errorMessage.map((error) => (<p style={{ color: 'red' }}>{error}</p>)) : null}
       <form onSubmit={handlePost}>
         <div className="search-group">
           <div className="input-group">
@@ -56,19 +57,23 @@ const TransactionTable = () => {
         </form>
     <div>
       <table>
+      <caption>
+        Saldo Total: R${saldoTotal} &nbsp; Saldo do Período: R${saldoPeriodo} &nbsp;&nbsp;&nbsp;
+        </caption>
         <thead>
+        
           <tr>
-            <th>Data</th>
-            <th>Valor</th>
-            <th>Tipo</th>
-            <th>Operador</th>
+            <th>Data &nbsp;</th>
+            <th>Valor &nbsp;</th>
+            <th>Tipo &nbsp;</th>
+            <th>Operador &nbsp;</th>
           </tr>
         </thead>
         <tbody>
           {data.map((transaction) => (
             <tr key={transaction.id}>
               <td>{transaction.dataTransferencia}</td>
-              <td>{transaction.valorTransferencia}</td>
+              <td>R${transaction.valorTransferencia}</td>
               <td>{transaction.tipoTransferencia}</td>
               <td>{transaction.operador}</td>
             </tr>
@@ -76,10 +81,7 @@ const TransactionTable = () => {
         </tbody>
       </table>
       </div>
-      <div>
-        <p>Saldo Total: {saldoTotal}</p>
-        <p>Saldo do Período: {saldoPeriodo}</p>
-      </div>
+      
       </div>
   );
 };

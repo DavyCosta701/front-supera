@@ -32,7 +32,6 @@ label {
   text-align: left;
 }
 
-
 button {
   padding: 8px;
   border-radius: 4px;
@@ -56,9 +55,12 @@ table {
   font-size: 14px;
 }
 
-th, td {
+th,
+td {
   padding: 8px;
   border: 1px solid #ccc;
+  text-align: left;
+  padding-left: 0px;
 }
 
 th {
@@ -68,4 +70,20 @@ th {
 
 td {
   background-color: #fff;
+}
+
+caption {
+  background-color: #4CAF50;
+  color: white;
+  text-align: left;
+  font-weight: bold;
+  padding: 8px;
+  padding-left: 0px;
+  white-space: nowrap;
+}
+
+span {
+  background-color: #4CAF50;
+  color: white;
+  padding-left: 0px;
 }
