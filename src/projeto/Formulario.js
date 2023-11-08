@@ -8,6 +8,20 @@ const TransactionTable = () => {
   const [errorMessage, setErrorMessage] = useState([]);
 
 
+  
+/*   const isValidDate = (date) => {
+    const datePattern = /^\d{4}-\d{2}-\d{2}$/;
+    return datePattern.test(date);
+  }; */
+
+/*   const handleDataInicioChange = (event) => {
+    const { value } = event.target;
+    if (isValidDate(value) || value === '') {
+      setDataInicio(value);
+    }
+  };
+ */
+
   const handlePost = async (event) => {
     event.preventDefault();
     const formData = new FormData(event.target);
@@ -15,9 +29,20 @@ const TransactionTable = () => {
     for (const pair of formData.entries()) {
       searchParams.append(pair[0], pair[1]);
     }
-    const queryString = searchParams.toString();
+    
+    const data_inicio = searchParams.toString().split("&")[0].split("=")[1].replace("/","-")
+    const data_fim = searchParams.toString().split("&")[1].split("=")[1].replace("/","-")
+    const operador = searchParams.toString().split("&")[2].split("=")[1]
+    const request = {
+      data_inicio,
+      data_fim,
+      operador
+    }
+    
 
-    const response = await fetch(`http://localhost:8080/?${queryString}`);
+    //const queryString = searchParams.toString();
+
+    const response = await fetch(`http://localhost:8080/?${request}`);
     const responseData = await response.json();
 
     if (response.status !== 200) {
@@ -41,19 +66,19 @@ const TransactionTable = () => {
       <form onSubmit={handlePost}>
         <div className="search-group">
           <div className="input-group">
-            <label htmlFor="data_inicio">Data de Início:</label>
-            <input type="text" id="data_inicio" name="data_inicio" />
+            <label htmlFor="data_inicio" class='entrada_dados'>Data de Início</label>
+            <input type="date" id="data_inicio" name="data_inicio" />
           </div>
           <div className="input-group">
-            <label htmlFor="data_fim">Data Final: </label>
-            <input type="text" id="data_fim" name="data_fim" />
+            <label htmlFor="data_fim" class='entrada_dados'>Data Final </label>
+            <input type="date" id="data_fim" name="data_fim"/>
           </div>
           <div className="input-group">
-            <label htmlFor="operador">Operador:</label>
+            <label htmlFor="operador" class='entrada_dados'>Operador</label>
             <input type="text" id="operador" name="operador" />
           </div>
-          <button type='submit'>Pesquisar</button>
         </div>
+        <button type='submit'>Pesquisar</button>
         </form>
     <div>
       <table>
