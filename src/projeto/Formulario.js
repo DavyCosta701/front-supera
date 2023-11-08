@@ -33,16 +33,22 @@ const TransactionTable = () => {
     const data_inicio = searchParams.toString().split("&")[0].split("=")[1].replace("/","-")
     const data_fim = searchParams.toString().split("&")[1].split("=")[1].replace("/","-")
     const operador = searchParams.toString().split("&")[2].split("=")[1]
-    const request = {
-      data_inicio,
-      data_fim,
-      operador
-    }
-    
 
+    const request = {
+      'dataInicial': `${data_inicio}`,
+      'dataFinal': `${data_fim}`,
+      'nomeOperador': `${operador}`
+    }
+    const url = "http://localhost:8080/"
     //const queryString = searchParams.toString();
 
-    const response = await fetch(`http://localhost:8080/?${request}`);
+    const response = await fetch(url, {
+      method: 'POST', // Especifica o método POST
+      headers: {
+        'Content-Type': 'application/json', // Define o tipo de conteúdo
+      },
+      body: JSON.stringify(request), // Converte o objeto JavaScript em uma string JSON
+    });
     const responseData = await response.json();
 
     if (response.status !== 200) {
