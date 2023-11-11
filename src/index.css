@@ -49,7 +49,7 @@ button {
 }
 
 button {
-  background-color: #4CAF50;
+  background-color: #4005c9;
   color: white;
   border: none;
   cursor: pointer;
@@ -73,8 +73,9 @@ td {
 }
 
 th {
-  background-color: #4CAF50;
+  background-color: #4005c9;
   color: white;
+  text-align: center;
 }
 
 td {
@@ -82,7 +83,7 @@ td {
 }
 
 caption {
-  background-color: #4CAF50;
+  background-color: #4005c9;
   color: white;
   text-align: left;
   font-weight: bold;
@@ -100,3 +101,12 @@ span {
 div{
   margin-bottom: 20px;
 }
+
+.formulario{
+  background-color: rgb(19, 17, 17);
+  width: 600px;
+  height: 380px;
+  border-radius: 15px;
+  margin-left: 655px;
+}
+

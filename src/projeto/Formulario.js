@@ -54,6 +54,7 @@ const TransactionTable = () => {
     if (response.status !== 200) {
       setErrorMessage(responseData.errors);
     } else {
+
       setErrorMessage([]);
       setData(responseData.transactions);
       setSaldoTotal(responseData.saldoTotal);
@@ -67,26 +68,33 @@ const TransactionTable = () => {
 
 
   return (
-    <div>
+    <div> <h1>Histórico de Transações Bancárias</h1>
+    <div class='formulario'>
+             
              {errorMessage ? errorMessage.map((error) => (<p style={{ color: 'red' }}>{error}</p>)) : null}
+             
       <form onSubmit={handlePost}>
         <div className="search-group">
           <div className="input-group">
-            <label htmlFor="data_inicio" class='entrada_dados'>Data de Início</label>
+            <label htmlFor="data_inicio" class='entrada_dados' required>Data de Início</label>
             <input type="date" id="data_inicio" name="data_inicio" />
           </div>
           <div className="input-group">
-            <label htmlFor="data_fim" class='entrada_dados'>Data Final </label>
+            <label htmlFor="data_fim" class='entrada_dados' required>Data Final </label>
             <input type="date" id="data_fim" name="data_fim"/>
           </div>
           <div className="input-group">
-            <label htmlFor="operador" class='entrada_dados'>Operador</label>
+            <label htmlFor="operador" class='entrada_dados' required>Operador</label>
             <input type="text" id="operador" name="operador" />
           </div>
         </div>
         <button type='submit'>Pesquisar</button>
         </form>
     <div>
+    <p className='paragrafo'></p>
+    <br></br>
+    <a href="/cadastro" className="cadastro">Nova Transação</a>
+    
       <table>
       <caption>
         Saldo Total: R${saldoTotal} &nbsp; Saldo do Período: R${saldoPeriodo} &nbsp;&nbsp;&nbsp;
@@ -113,6 +121,7 @@ const TransactionTable = () => {
       </table>
       </div>
       
+      </div>
       </div>
   );
 };

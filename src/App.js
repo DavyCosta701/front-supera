@@ -1,15 +1,22 @@
 import './App.css';
 import TransactionTable from './projeto/Formulario'; 
-
+import CadastroConta from './projeto/insertData'
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 
 function App() {
   
 
   return (
-    <><><h1>Histórico de Transações Bancárias</h1>
-      <TransactionTable /></></>
-
+    <div>
+      <BrowserRouter>
+            <Routes>
+                <Route path="/" element={<TransactionTable />} />
+                <Route path="/cadastro" element={<CadastroConta />} />
+            </Routes>
+            </BrowserRouter>
+      </div>
+    
   )
 }
 
