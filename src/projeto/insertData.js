@@ -29,7 +29,7 @@ const CadastroConta = () => {
       'valorTransacao': `${valorTransacao}`,
 
     }
-    const url = "http://localhost:3050/samir/login"
+    const url = "http://localhost:8080/transacao"
     //const queryString = searchParams.toString();
     console.log(request)
     const response = await fetch(url, {
